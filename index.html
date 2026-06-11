@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HyperKnight School</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+
+    background:url("https://i.pinimg.com/originals/e2/8d/61/e28d61b0ce1b686bbd9c19b98912101f.gif");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    overflow:hidden;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.4);
+    backdrop-filter:blur(3px);
+}
+
+.content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+}
+
+h1{
+    color:white;
+    font-size:4rem;
+    margin-bottom:30px;
+    text-shadow:
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff;
+}
+
+.button-container{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.game-btn{
+    text-decoration:none;
+    color:white;
+    font-size:1.2rem;
+    padding:15px 40px;
+
+    background:rgba(255,255,255,0.1);
+    border:2px solid rgba(255,255,255,0.3);
+
+    backdrop-filter:blur(10px);
+    border-radius:15px;
+
+    transition:0.3s;
+    box-shadow:0 0 15px rgba(0,255,255,0.4);
+}
+
+.game-btn:hover{
+    transform:scale(1.08);
+    background:rgba(0,255,255,0.25);
+    box-shadow:
+        0 0 20px cyan,
+        0 0 40px cyan;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="content">
+    <h1>HyperKnight School</h1>
+
+    <div class="button-container">
+        <a href="games/game1.html" class="game-btn">🎮 All Games</a>
+        <a href="games/game2.html" class="game-btn">Proxy</a>
+        <a href="games/game3.html" class="game-btn">How to Play Retro Games</a>
+        <a href="links.html" class="game-btn">🔗 Useful Links</a>
+    </div>
+</div>
+
+</body>
+</html>
