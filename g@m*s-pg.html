@@ -1,1 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All G@am*</title>
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:url('https://i.pinimg.com/originals/e2/8d/61/e28d61b0ce1b686bbd9c19b98912101f.gif');
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+}
+
+.overlay{
+    min-height:100vh;
+    background:rgba(0,0,0,0.55);
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    color:white;
+    margin-bottom:40px;
+    font-size:3rem;
+    text-shadow:0 0 20px #000;
+}
+
+.gallery{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:30px;
+}
+
+.card{
+    width:300px;
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(10px);
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:20px;
+    text-align:center;
+}
+
+.card-content h2{
+    color:white;
+    margin-bottom:10px;
+}
+
+.card-content p{
+    color:#ddd;
+    margin-bottom:15px;
+}
+
+.card-content a{
+    display:inline-block;
+    padding:10px 20px;
+    background:#00bfff;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.card-content a:hover{
+    background:#0095cc;
+}
+</style>
+</head>
+<body>
+
+<div class="overlay">
+
+<h1>All G@m*s</h1>
+
+<div class="gallery">
+
+    <!-- CARD 1 -->
+    <div class="card">
+        <img src="IMAGE_URL_HERE" alt="">
+        <div class="card-content">
+            <a href="https://example.com" target="_blank">Pla@y</a>
+        </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="card">
+        <img src="IMAGE_URL_HERE" alt="">
+        <div class="card-content">
+            <a href="https://example.com" target="_blank">Pl@y</a>
+        </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="card">
+        <img src="IMAGE_URL_HERE" alt="">
+        <div class="card-content">
+            <a href="https://example.com" target="_blank">Pl@y</a>
+        </div>
+    </div>
+
+    <!-- CARD 4 -->
+    <div class="card">
+        <img src="IMAGE_URL_HERE" alt="">
+        <div class="card-content">
+            <a href="https://example.com" target="_blank">Pl@y</a>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
