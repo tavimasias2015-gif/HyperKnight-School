@@ -10,96 +10,153 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
+    background: radial-gradient(circle at center, #0f2c5a, #050816);
     height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-
-    background:url("https://i.pinimg.com/originals/e2/8d/61/e28d61b0ce1b686bbd9c19b98912101f.gif");
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
     overflow:hidden;
+    color:white;
 }
 
-.overlay{
+/* Background Glow */
+body::before{
+    content:'';
     position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.4);
-    backdrop-filter:blur(3px);
+    width:500px;
+    height:500px;
+    background:#00aeff;
+    filter:blur(180px);
+    opacity:.25;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
 }
 
-.content{
-    position:relative;
-    z-index:2;
+/* Center Logo */
+.logo-container{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-60%);
     text-align:center;
+    z-index:2;
 }
 
-h1{
-    color:white;
+.logo{
     font-size:4rem;
-    margin-bottom:30px;
+    font-weight:900;
+    color:#fff;
     text-shadow:
-        0 0 10px #00ffff,
-        0 0 20px #00ffff,
-        0 0 40px #00ffff;
+        0 0 10px #00bfff,
+        0 0 20px #00bfff,
+        0 0 40px #00bfff,
+        0 0 80px #00bfff;
+    letter-spacing:3px;
 }
 
-.button-container{
+.subtitle{
+    margin-top:15px;
+    color:#9edcff;
+    font-size:1.1rem;
+    letter-spacing:4px;
+}
+
+/* Bottom Navigation */
+.bottom-bar{
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%);
     display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.game-btn{
-    text-decoration:none;
-    color:white;
-    font-size:1.2rem;
-    padding:15px 40px;
-
-    background:rgba(255,255,255,0.1);
-    border:2px solid rgba(255,255,255,0.3);
-
-    backdrop-filter:blur(10px);
-    border-radius:15px;
-
-    transition:0.3s;
-    box-shadow:0 0 15px rgba(0,255,255,0.4);
-}
-
-.game-btn:hover{
-    transform:scale(1.08);
-    background:rgba(0,255,255,0.25);
+    gap:20px;
+    padding:15px 25px;
+    background:rgba(0,20,50,.6);
+    border:1px solid rgba(0,191,255,.4);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
     box-shadow:
-        0 0 20px cyan,
-        0 0 40px cyan;
+        0 0 20px rgba(0,191,255,.5);
+    z-index:5;
+}
+
+/* Square Buttons */
+.nav-btn{
+    width:70px;
+    height:70px;
+    border:none;
+    border-radius:18px;
+    background:rgba(0,191,255,.15);
+    color:white;
+    font-size:14px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.3s;
+    border:1px solid rgba(0,191,255,.4);
+    box-shadow:0 0 10px rgba(0,191,255,.3);
+}
+
+.nav-btn:hover{
+    transform:translateY(-8px) scale(1.08);
+    background:#00bfff;
+    box-shadow:
+        0 0 15px #00bfff,
+        0 0 35px #00bfff;
+}
+
+/* Small floating particles */
+.particle{
+    position:absolute;
+    background:#00bfff;
+    border-radius:50%;
+    opacity:.5;
+    animation:float 10s linear infinite;
+}
+
+@keyframes float{
+    from{
+        transform:translateY(100vh);
+    }
+    to{
+        transform:translateY(-100px);
+    }
 }
 </style>
 </head>
-
 <body>
 
-<div class="overlay"></div>
-
-<div class="content">
-    <h1>HyperKnight School</h1>
-
-    <div class="button-container">
-        <a href="g@m*s-pg.html" class="game-btn">All G@m*s</a>
-        <a href="games/game2.html" class="game-btn">Proxy</a>
-        <a href="games/game3.html" class="game-btn">How to Play Retro Games</a>
-        <a href="links.html" class="game-btn">🔗 Useful Links</a>
-    </div>
+<div class="logo-container">
+   <a href="index.html" class="logo-link">
+    <div class="logo">HyperKnight School</div>
+</a>
+    <div class="subtitle">UNBLOCKED G@M*NG HUB</div>
 </div>
+
+<div class="bottom-bar">
+    <button class="nav-btn" onclick="location.href='g@m*s-pg.html'">GAm*s</button>
+    <button class="nav-btn" onclick="location.href='apps.html'">Apps</button>
+    <button class="nav-btn" onclick="location.href='proxy.html'">Pro*y</button>
+    <button class="nav-btn" onclick="location.href='settings.html'">Settings</button>
+</div>
+    
+<script>
+// Floating particles
+for(let i=0;i<25;i++){
+    let p=document.createElement('div');
+    p.classList.add('particle');
+
+    let size=Math.random()*6+2;
+
+    p.style.width=size+'px';
+    p.style.height=size+'px';
+    p.style.left=Math.random()*100+'vw';
+    p.style.animationDuration=(Math.random()*8+6)+'s';
+    p.style.animationDelay=Math.random()*5+'s';
+
+    document.body.appendChild(p);
+}
+</script>
 
 </body>
 </html>
