@@ -5,156 +5,304 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>New Tab</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
 <style>
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+    font-family:'Orbitron',sans-serif;
 }
 
 body{
-    background: radial-gradient(circle at center, #0f2c5a, #050816);
+    background:#050816;
     height:100vh;
     overflow:hidden;
     color:white;
+    position:relative;
 }
 
-/* Background Glow */
-body::before{
-    content:'';
+/* Neon Grid */
+.grid{
     position:absolute;
-    width:500px;
-    height:500px;
-    background:#00aeff;
-    filter:blur(180px);
-    opacity:.25;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(rgba(0,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.08) 1px, transparent 1px);
+    background-size:40px 40px;
+    animation:gridMove 15s linear infinite;
 }
 
-/* Center Logo */
-.logo-container{
+@keyframes gridMove{
+    from{transform:translateY(0);}
+    to{transform:translateY(40px);}
+}
+
+/* Glow Blobs */
+.glow1,
+.glow2{
     position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-60%);
-    text-align:center;
+    border-radius:50%;
+    filter:blur(120px);
+}
+
+.glow1{
+    width:400px;
+    height:400px;
+    background:#00ffff;
+    top:-150px;
+    left:-150px;
+    opacity:.5;
+}
+
+.glow2{
+    width:400px;
+    height:400px;
+    background:#a855f7;
+    bottom:-150px;
+    right:-150px;
+    opacity:.5;
+}
+
+/* Main Content */
+.container{
+    position:relative;
     z-index:2;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
 }
 
 .logo{
-    font-size:4rem;
+    font-size:5rem;
     font-weight:900;
-    color:#fff;
+    color:#00ffff;
+    text-transform:uppercase;
+
     text-shadow:
-        0 0 10px #00bfff,
-        0 0 20px #00bfff,
-        0 0 40px #00bfff,
-        0 0 80px #00bfff;
-    letter-spacing:3px;
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        0 0 80px #00ffff;
+
+    animation:pulse 2s infinite alternate;
+}
+
+@keyframes pulse{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.05);
+    }
 }
 
 .subtitle{
-    margin-top:15px;
-    color:#9edcff;
-    font-size:1.1rem;
+    margin-top:20px;
+    color:#d8b4fe;
     letter-spacing:4px;
+    text-shadow:0 0 10px #a855f7;
 }
 
-/* Bottom Navigation */
-.bottom-bar{
-    position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:20px;
-    padding:15px 25px;
-    background:rgba(0,20,50,.6);
-    border:1px solid rgba(0,191,255,.4);
-    backdrop-filter:blur(12px);
-    border-radius:25px;
-    box-shadow:
-        0 0 20px rgba(0,191,255,.5);
-    z-index:5;
+/* Floating Particles */
+.particles{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:1;
 }
 
-/* Square Buttons */
-.nav-btn{
-    width:70px;
-    height:70px;
-    border:none;
-    border-radius:18px;
-    background:rgba(0,191,255,.15);
-    color:white;
-    font-size:14px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
-    border:1px solid rgba(0,191,255,.4);
-    box-shadow:0 0 10px rgba(0,191,255,.3);
-}
-
-.nav-btn:hover{
-    transform:translateY(-8px) scale(1.08);
-    background:#00bfff;
-    box-shadow:
-        0 0 15px #00bfff,
-        0 0 35px #00bfff;
-}
-
-/* Small floating particles */
 .particle{
     position:absolute;
-    background:#00bfff;
     border-radius:50%;
-    opacity:.5;
-    animation:float 10s linear infinite;
+    animation:float linear infinite;
 }
 
 @keyframes float{
     from{
-        transform:translateY(100vh);
+        transform:translateY(0);
+        opacity:0;
+    }
+    20%{
+        opacity:1;
     }
     to{
-        transform:translateY(-100px);
+        transform:translateY(-120vh);
+        opacity:0;
     }
+}
+
+/* Bottom Nav */
+.bottom-nav{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:90%;
+    max-width:750px;
+    height:95px;
+
+    background:rgba(0,0,0,.45);
+    border:2px solid #00ffff;
+
+    box-shadow:
+        0 0 15px #00ffff,
+        inset 0 0 15px rgba(0,255,255,.3);
+
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+
+    z-index:5;
+}
+
+.bottom-nav button{
+    width:70px;
+    height:70px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(0,0,0,.4);
+    border:2px solid rgba(0,255,255,.25);
+
+    color:white;
+    cursor:pointer;
+
+    border-radius:8px;
+    transition:all .25s ease;
+
+    box-shadow:
+        0 0 10px rgba(0,255,255,.15),
+        inset 0 0 10px rgba(0,255,255,.08);
+}
+
+.bottom-nav button span{
+    font-size:1.5rem;
+}
+
+.bottom-nav button small{
+    margin-top:4px;
+    font-size:.65rem;
+    letter-spacing:1px;
+}
+
+.bottom-nav button:hover{
+    transform:translateY(-4px);
+
+    color:#00ffff;
+    border-color:#00ffff;
+
+    box-shadow:
+        0 0 15px #00ffff,
+        0 0 30px rgba(0,255,255,.5),
+        inset 0 0 10px rgba(0,255,255,.3);
+}
+
+.active{
+    background:#00ffff !important;
+    color:#050816 !important;
+
+    border-color:#00ffff;
+
+    box-shadow:
+        0 0 20px #00ffff,
+        0 0 40px #00ffff,
+        0 0 60px rgba(0,255,255,.7);
 }
 </style>
 </head>
 <body>
 
-<div class="logo-container">
-   <a href="index.html" class="logo-link">
-    <div class="logo">HyperKnight School</div>
-</a>
-    <div class="subtitle">UNBLOCKED G@M*NG HUB</div>
+<div class="grid"></div>
+
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<div class="particles" id="particles"></div>
+
+<div class="container">
+    <h1 class="logo">HyperKnight School</h1>
+    <p class="subtitle">UNBLOCKED • G@M*S • HUB</p>
 </div>
 
-<div class="bottom-bar">
-    <button class="nav-btn" onclick="location.href='g@m*s-pg.html'">G@m*s</button>
-    <button class="nav-btn" onclick="location.href='apps.html'">Apps</button>
-    <button class="nav-btn" onclick="location.href='proxy.html'">Pro*y</button>
-    <button class="nav-btn" onclick="location.href='settings.html'">Settings</button>
+<div class="bottom-nav">
+
+    <button onclick="location.href='index.html'">
+        <span></span>
+        <small>HOME</small>
+    </button>
+
+    <button onclick="location.href='g@m*s-pg.html'">
+        <span></span>
+        <small>G@M*S</small>
+    </button>
+
+    <button onclick="location.href='hot.html'">
+        <span></span>
+        <small>PR+Y</small>
+    </button>
+
+    <button onclick="location.href='saved.html'">
+        <span></span>
+        <small>Y0UTUB*</small>
+    </button>
+
+    <button onclick="location.href='settings.html'">
+        <span></span>
+        <small>SETTINGS</small>
+    </button>
+
 </div>
-    
+
 <script>
-// Floating particles
-for(let i=0;i<25;i++){
-    let p=document.createElement('div');
-    p.classList.add('particle');
+const container = document.getElementById("particles");
 
-    let size=Math.random()*6+2;
+for(let i = 0; i < 120; i++){
 
-    p.style.width=size+'px';
-    p.style.height=size+'px';
-    p.style.left=Math.random()*100+'vw';
-    p.style.animationDuration=(Math.random()*8+6)+'s';
-    p.style.animationDelay=Math.random()*5+'s';
+    const p = document.createElement("div");
+    p.className = "particle";
 
-    document.body.appendChild(p);
+    const size = Math.random() * 4 + 2;
+
+    p.style.width = size + "px";
+    p.style.height = size + "px";
+
+    p.style.left = Math.random() * 100 + "%";
+    p.style.bottom = "-10px";
+
+    const colors = [
+        "#00ffff",
+        "#00bfff",
+        "#a855f7",
+        "#ffffff"
+    ];
+
+    const color =
+        colors[Math.floor(Math.random() * colors.length)];
+
+    p.style.background = color;
+    p.style.boxShadow = `0 0 15px ${color}`;
+
+    p.style.animationDuration =
+        (Math.random() * 10 + 8) + "s";
+
+    p.style.animationDelay =
+        Math.random() * 8 + "s";
+
+    container.appendChild(p);
 }
 </script>
 
