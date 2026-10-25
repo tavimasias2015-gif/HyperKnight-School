@@ -117,23 +117,22 @@ body {
     align-items: stretch;
 }
 
-/* GAME CARDS */
+/* GAME CARD */
 .game-card {
-    display: flex;
-    flex-direction: column;
+    position: relative;
+    display: block;
     width: 100%;
     height: 230px;
     min-width: 0;
 
     text-decoration: none;
     color: white;
-    background: rgba(0,0,0,.4);
-    border: 2px solid rgba(0,255,255,.2);
+    background: #050816;
+    border: 2px solid rgba(0,255,255,.3);
     border-radius: 12px;
     overflow: hidden;
 
     transition: transform .25s, border-color .25s, box-shadow .25s;
-    backdrop-filter: blur(12px);
     box-shadow: 0 0 10px rgba(0,255,255,.1);
 }
 
@@ -143,32 +142,45 @@ body {
     box-shadow: 0 0 25px #00ffff;
 }
 
-/* GAME IMAGES */
+/* IMAGE FILLS ENTIRE CARD */
 .game-image {
+    position: absolute;
+    inset: 0;
+
     display: block;
     width: 100%;
-    height: 175px;
-    flex-shrink: 0;
+    height: 100%;
 
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-    padding: 8px;
+
+    transition: transform .3s;
 }
 
-/* GAME TITLES */
+.game-card:hover .game-image {
+    transform: scale(1.05);
+}
+
+/* TITLE OVERLAY */
 .game-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 
-    flex: 1;
-    min-height: 0;
-    padding: 10px;
-
+    padding: 12px 8px;
     text-align: center;
     font-size: .9rem;
     color: #00ffff;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.85) 35%,
+        rgba(0,0,0,.95)
+    );
+
     overflow-wrap: anywhere;
+    z-index: 1;
 }
 
 /* BOTTOM NAVIGATION */
@@ -200,6 +212,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     background: rgba(0,0,0,.4);
     border: 2px solid rgba(0,255,255,.25);
     color: white;
@@ -241,7 +254,7 @@ body {
     }
 }
 
-/* SMALL SCREENS */
+/* MOBILE */
 @media (max-width: 480px) {
     .content {
         padding: 25px 12px 150px;
@@ -260,13 +273,9 @@ body {
         height: 200px;
     }
 
-    .game-image {
-        height: 145px;
-    }
-
     .game-info {
         font-size: .75rem;
-        padding: 6px;
+        padding: 10px 5px;
     }
 
     .bottom-nav {
@@ -317,7 +326,6 @@ body {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1W9DtwhyHaahKOOpQOc6Qxb52e2zQPILlbWNYIAq7xA&s=10"
                 class="game-image"
                 alt="Cloudmoon"
-                loading="lazy"
             >
 
             <div class="game-info">Cloudmoon</div>
@@ -331,7 +339,6 @@ body {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFhgbMXZFIV45W8pOK_Ij0dAhF4uyCmKlNLdbExmWNww&s=10"
                 class="game-image"
                 alt="AI"
-                loading="lazy"
             >
 
             <div class="game-info">AI</div>
@@ -345,7 +352,6 @@ body {
                 src="https://res.xc.com/res/cover/2x/30370.webp"
                 class="game-image"
                 alt="Soundboard"
-                loading="lazy"
             >
 
             <div class="game-info">Soundboard</div>
@@ -367,14 +373,14 @@ body {
         <small>G@M*S</small>
     </button>
 
-    <button onclick="location.href='ch@t.html'">
+    <button onclick="location.href='hot.html'">
         <span></span>
-        <small>CH@T</small>
+        <small>PR0XY</small>
     </button>
 
-    <button onclick="location.href='apps.html'">
+    <button onclick="location.href='saved.html'">
         <span></span>
-        <small>APPS</small>
+        <small>Y0UTUB*</small>
     </button>
 
     <button onclick="location.href='settings.html'">
@@ -437,7 +443,7 @@ function sortGames() {
 
 sortGames();
 
-/* TRACK GAME CLICKS */
+/* TRACK CLICKS */
 cards.forEach(card => {
     card.addEventListener("click", () => {
         clickSound.currentTime = 0;
@@ -485,7 +491,7 @@ input.addEventListener("input", () => {
             fuzzy(name, value) ||
             fuzzy(title, value);
 
-        card.style.display = matches ? "flex" : "none";
+        card.style.display = matches ? "block" : "none";
     });
 });
 </script>
