@@ -1,1 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Tab</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
+}
+
+body{
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
+    min-height:100vh;
+}
+
+/* GRID */
+.grid{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(0,255,255,.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.08) 1px, transparent 1px);
+    background-size:40px 40px;
+    animation:gridMove 15s linear infinite;
+    z-index:0;
+}
+
+@keyframes gridMove{
+    from{transform:translateY(0);}
+    to{transform:translateY(40px);}
+}
+
+/* GLOW */
+.glow1,.glow2{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(120px);
+    z-index:0;
+}
+
+.glow1{
+    width:400px;height:400px;
+    background:#00ffff;
+    top:-150px;left:-150px;
+    opacity:.4;
+}
+
+.glow2{
+    width:400px;height:400px;
+    background:#a855f7;
+    bottom:-150px;right:-150px;
+    opacity:.4;
+}
+
+/* CONTENT */
+.content{
+    position:relative;
+    z-index:2;
+    max-width:1600px;
+    margin:auto;
+    padding:40px 20px 180px;
+}
+
+.title{
+    text-align:center;
+    font-size:3rem;
+    color:#00ffff;
+    text-shadow:0 0 20px #00ffff;
+    margin-bottom:20px;
+}
+
+/* SEARCH */
+.search-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:25px;
+}
+
+#searchInput{
+    width:100%;
+    max-width:500px;
+    padding:14px 18px;
+    border-radius:12px;
+    border:2px solid rgba(0,255,255,.3);
+    background:rgba(0,0,0,.4);
+    color:#00ffff;
+    outline:none;
+    box-shadow:0 0 10px rgba(0,255,255,.15);
+}
+
+#searchInput:focus{
+    border-color:#00ffff;
+    box-shadow:0 0 25px #00ffff;
+}
+
+/* GRID */
+.games-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+    gap:18px;
+}
+
+/* CARD */
+.game-card{
+    text-decoration:none;
+    color:white;
+    background:rgba(0,0,0,.4);
+    border:2px solid rgba(0,255,255,.2);
+    border-radius:12px;
+    overflow:hidden;
+    transition:.25s;
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 10px rgba(0,255,255,.1);
+}
+
+.game-card:hover{
+    transform:translateY(-6px) scale(1.03);
+    border-color:#00ffff;
+    box-shadow:0 0 25px #00ffff;
+}
+
+.game-image{
+    width:100%;
+    height:130px;
+    object-fit:cover;
+}
+
+.game-info{
+    padding:10px;
+    text-align:center;
+    font-size:.9rem;
+    color:#00ffff;
+}
+
+/* NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:90%;
+    max-width:750px;
+    height:95px;
+    z-index:9999;
+
+    background:rgba(0,0,0,.55);
+    backdrop-filter:blur(20px);
+    border:2px solid #00ffff;
+    box-shadow:0 0 20px #00ffff;
+    border-radius:20px;
+
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+}
+
+.bottom-nav button{
+    width:70px;
+    height:70px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:rgba(0,0,0,.4);
+    border:2px solid rgba(0,255,255,.25);
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.bottom-nav button:hover{
+    color:#00ffff;
+    box-shadow:0 0 15px #00ffff;
+}
+
+.active{
+    background:#00ffff;
+    color:#050816 !important;
+}
+
+/* PARTICLES */
+.particle{
+    position:fixed;
+    border-radius:50%;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(0);opacity:0;}
+    20%{opacity:1;}
+    to{transform:translateY(-120vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+<div class="glow1"></div>
+<div class="glow2"></div>
+
+<div class="content">
+
+<h1 class="title">G@M*S</h1>
+
+<div class="search-wrap">
+    <input id="searchInput" placeholder="Search g@m*s...">
+</div>
+
+<div class="games-grid" id="games">
+
+    <a href="apps/cloudmoon.html" class="game-card" data-name="app">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1W9DtwhyHaahKOOpQOc6Qxb52e2zQPILlbWNYIAq7xA&s=10" class="game-image">
+        <div class="game-info">Cloudmoon</div>
+    </a>
+
+    <a href="apps/yukios.html" class="game-card" data-name="app">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQTzavF4UykNhHgIkGU1aTSCKrBR1BpC7_ZEApQbbnV_g&s=10" class="game-image">
+        <div class="game-info">Yuki OS</div>
+    </a>
+
+    <a href="apps/soundboard.html" class="game-card" data-name="app">
+        <img src="https://res.xc.com/res/cover/2x/30370.webp" class="game-image">
+        <div class="game-info">Soundboard</div>
+    </a>
+
+</div>
+
+</div>
+
+<!-- NAV -->
+<div class="bottom-nav">
+
+    <button onclick="location.href='index.html'">
+        <span></span>
+        <small>HOME</small>
+    </button>
+
+    <button onclick="location.href='g@m*s-pg.html'">
+        <span></span>
+        <small>G@M*S</small>
+    </button>
+
+    <button onclick="location.href='hot.html'">
+        <span></span>
+        <small>PR0XY</small>
+    </button>
+
+    <button onclick="location.href='saved.html'">
+        <span></span>
+        <small>Y0UTUB*</small>
+    </button>
+
+    <button onclick="location.href='settings.html'">
+        <span></span>
+        <small>SETTINGS</small>
+    </button>
+
+</div>
+
+<!-- CLICK SOUND -->
+<audio id="clickSound" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
+<script>
+
+/* PARTICLES */
+for(let i=0;i<120;i++){
+    const p=document.createElement("div");
+    p.className="particle";
+
+    const size=Math.random()*4+2;
+    p.style.width=size+"px";
+    p.style.height=size+"px";
+    p.style.left=Math.random()*100+"%";
+    p.style.bottom="-10px";
+
+    const colors=["#00ffff","#a855f7","#ffffff"];
+    const color=colors[Math.floor(Math.random()*colors.length)];
+
+    p.style.background=color;
+    p.style.boxShadow=`0 0 10px ${color}`;
+    p.style.animation=`float ${(Math.random()*10+8)}s linear infinite`;
+
+    document.body.appendChild(p);
+}
+
+/* CLICK SOUND + MOST PLAYED */
+const clickSound = document.getElementById("clickSound");
+const cards = document.querySelectorAll(".game-card");
+
+/* load saved counts */
+function getCount(name){
+    return localStorage.getItem("play_" + name) || 0;
+}
+
+/* sort by most played */
+function sortGames(){
+    const grid = document.getElementById("games");
+    let arr = Array.from(cards);
+
+    arr.sort((a,b)=>{
+        return getCount(b.dataset.name) - getCount(a.dataset.name);
+    });
+
+    arr.forEach(c=>grid.appendChild(c));
+}
+
+sortGames();
+
+/* track clicks */
+cards.forEach(card=>{
+    card.addEventListener("click",(e)=>{
+
+        clickSound.currentTime=0;
+        clickSound.play();
+
+        const name = card.dataset.name;
+        let count = parseInt(getCount(name)) + 1;
+        localStorage.setItem("play_" + name, count);
+
+    });
+});
+
+/* FUZZY SEARCH */
+const input = document.getElementById("searchInput");
+
+function fuzzy(text, search){
+    text=text.toLowerCase();
+    search=search.toLowerCase();
+
+    let i=0,j=0;
+    while(i<text.length && j<search.length){
+        if(text[i]==search[j]) j++;
+        i++;
+    }
+    return j===search.length;
+}
+
+input.addEventListener("input",()=>{
+    const val=input.value;
+
+    cards.forEach(card=>{
+        const name=card.dataset.name;
+
+        if(val==="" || fuzzy(name,val)){
+            card.style.display="block";
+        }else{
+            card.style.display="none";
+        }
+    });
+});
+
+</script>
+
+</body>
+</html>
